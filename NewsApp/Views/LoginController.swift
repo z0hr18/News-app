@@ -18,6 +18,8 @@ class LoginController: UIViewController {
     @IBAction func loginButton(_ sender: Any) {
     }
     
+    @IBOutlet weak var loginView: UIButton!
+    
     var userList = [User]()
     
     override func viewDidLoad() {
@@ -57,8 +59,8 @@ extension LoginController {
         passwordTextfield.leftView = paddingViewPass
         passwordTextfield.leftViewMode = UITextField.ViewMode.always
         //button
-//        loginButton.layer.cornerRadius = 28
-//        loginButton.layer.masksToBounds = true
+        loginView.layer.cornerRadius = 28
+        loginView.layer.masksToBounds = true
     }
     
     func logIn(){

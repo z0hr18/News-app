@@ -14,6 +14,8 @@ class RegisterController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBAction func registerButton(_ sender: Any) {
     }
+    @IBOutlet weak var registerView: UIButton!
+    
     var onLogin: ((String?, String?) -> Void)?
     
     override func viewDidLoad() {
@@ -51,7 +53,7 @@ extension RegisterController {
         passwordTextField.leftView = paddingViewPass
         passwordTextField.leftViewMode = UITextField.ViewMode.always
         //button
-//        loginButton.layer.cornerRadius = 28
-//        loginButton.layer.masksToBounds = true
+        registerView.layer.cornerRadius = 28
+        registerView.layer.masksToBounds = true
     }
 }

@@ -95,6 +95,7 @@
                     <connections>
                         <outlet property="emailTextfield" destination="ug7-wy-Q1v" id="Rho-hj-xZ8"/>
                         <outlet property="loginImage" destination="7t1-iR-jYt" id="j0w-Ag-mKM"/>
+                        <outlet property="loginView" destination="7Ph-pu-YBy" id="gC9-bS-Pqi"/>
                         <outlet property="passwordTextfield" destination="scV-9v-2Rn" id="kmb-JN-xrg"/>
                     </connections>
                 </viewController>
@@ -205,6 +206,7 @@
                         <outlet property="emailTextField" destination="kek-z6-Fw8" id="MWb-bP-0Kj"/>
                         <outlet property="nameTextfield" destination="1au-lB-zVn" id="wd7-Kg-yYj"/>
                         <outlet property="passwordTextField" destination="d5e-M4-Dd5" id="nsw-8r-6S0"/>
+                        <outlet property="registerView" destination="V0a-mG-5rI" id="qTM-bt-Hlr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tzu-Y8-78D" sceneMemberID="firstResponder"/>
