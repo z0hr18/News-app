@@ -17,8 +17,11 @@ class News: Object {
     
 }
 enum Categories: String, CaseIterable, PersistableEnum  {
+//    case allNews = "All News"?
     case business = "Business"
     case policits = "Politics"
     case tech = "Tech"
     case healthy = "Healthy"
 }
+
+//let allCategories = Categories.allCases
