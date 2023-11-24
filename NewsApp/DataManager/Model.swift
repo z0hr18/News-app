@@ -12,16 +12,7 @@ class News: Object {
     @Persisted var Title: String?
     @Persisted var Description: String?
     @Persisted var Image: String?
-    @Persisted var newsCategoryRaw: Categories
-
-    var newsCategory: Categories {
-        get {
-            return newsCategoryRaw
-        }
-        set {
-            newsCategoryRaw = newValue
-        }
-    }
+    @Persisted var newsCategory: Categories?
 }
 
 enum Categories: String, CaseIterable, PersistableEnum {

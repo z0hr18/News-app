@@ -13,50 +13,68 @@ class HomeController: UIViewController {
     @IBOutlet weak var searchView: UIView!
     
     var allNews = [News]()
+    var backupNews =  [News]()
     var allnEws = [NewsModel]()
     let realm = try! Realm()
+    var searching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchItems()
+        
         if let url = realm.configuration.fileURL {
             print (url)
         }
+        backupNews = allNews
     }
     
     @IBAction func searchTextfield(_ sender: UITextField) {
-        //        let searchText = searchView.text ?? ""
+        if let searchText = sender.text, !searchText.isEmpty {
+            searching = true
+            allNews = allNews.filter { news in
+                if let news = news.Title {
+                    return news.lowercased().contains(searchText.lowercased())
+                }
+                return false
+            }
+            } else {
+                searching = false
+                allNews.removeAll()
+                allNews = backupNews
+            }
+            collection.reloadData()
+        }
     }
-}
 
-extension HomeController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        allNews.count
+
+    extension HomeController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            allNews.count
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AllNewsCell", for: indexPath) as! AllNewsCell
+            cell.titleLabel.text = allNews[indexPath.item].Title
+            cell.descriptionLabel.text = allNews[indexPath.item].Description
+            cell.newsImage.image = UIImage(named: allNews[indexPath.item].Image ?? "")
+            cell.tag = indexPath.item
+            //                cell.delegate = self
+            return cell
+            
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return CGSize(width: collectionView.frame.width, height: 80)
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AllNewsCell", for: indexPath) as! AllNewsCell
-        cell.titleLabel.text = allNews[indexPath.item].Title
-        cell.descriptionLabel.text = allNews[indexPath.item].Description
-        cell.newsImage.image = UIImage(named: allNews[indexPath.item].Image ?? "")
-        cell.tag = indexPath.item
-        //                cell.delegate = self
-        return cell
-        
-        
+    
+    extension HomeController {
+        func fetchItems() {
+            allNews.removeAll()
+            let data = realm.objects(News.self)
+            allNews.append(contentsOf: data)
+            collection.reloadData()
+        }
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 80)
-    }
-}
-
-
-extension HomeController {
-    func fetchItems() {
-        allNews.removeAll()
-        let data = realm.objects(News.self)
-        allNews.append(contentsOf: data)
-        collection.reloadData()
-    }
-}

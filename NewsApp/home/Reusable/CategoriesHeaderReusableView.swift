@@ -6,10 +6,48 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CategoriesHeaderReusableView: UICollectionReusableView {
     @IBOutlet weak var categoryCollection: UICollectionView!
     
+    let manager  = RealmManager()
+    let realm = try! Realm()
+    var categoryCounts = [String: Int]()
+    var categorySelectedIndexPath: IndexPath?
+    var didSelectCategoryCallback: ((String) -> Void)?
+
+}
+
+extension CategoriesHeaderReusableView:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        for category in Categories.allCases {
+            let categoryNews = realm.objects(News.self).filter("category = %@", category.rawValue)
+            categoryCounts[category.rawValue] = categoryNews.count
+        }
+        return categoryCounts.count
+}
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesHeaderCell", for: indexPath) as! CategoriesHeaderCell
+        let category = Categories.allCases[indexPath.item]
+        cell.headerLabel.text = category.rawValue
+        
+        if indexPath == categorySelectedIndexPath {
+            // Apply selected appearance
+            cell.selectedCell()
+//            print( "Selected cell: \(cell)")
+        } else {
+            // Apply default appearance
+            cell.unSelectedCell()
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        .init(width: collectionView.frame.width, height: 30)
+    }
     
 }
