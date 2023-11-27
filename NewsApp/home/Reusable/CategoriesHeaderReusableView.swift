@@ -22,9 +22,9 @@ class CategoriesHeaderReusableView: UICollectionReusableView {
 extension CategoriesHeaderReusableView:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        for category in Categories.allCases {
-            let categoryNews = realm.objects(News.self).filter("category = %@", category.rawValue)
-            categoryCounts[category.rawValue] = categoryNews.count
+        for newsCategory in Categories.allCases {
+            let categoryNews = realm.objects(News.self).filter("category = %@", newsCategory.rawValue)
+            categoryCounts[newsCategory.rawValue] = categoryNews.count
         }
         return categoryCounts.count
 }
@@ -49,5 +49,7 @@ extension CategoriesHeaderReusableView:  UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         .init(width: collectionView.frame.width, height: 30)
     }
+    
+    
     
 }

@@ -359,37 +359,32 @@
                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoriesHeaderCell" id="Xl8-Ef-WtG" customClass="CategoriesHeaderCell" customModule="NewsApp" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="25"/>
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoriesHeaderCell" id="JH9-eQ-76B" customClass="CategoriesHeaderCell" customModule="NewsApp" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="53" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DEg-2v-kAn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="45" height="25"/>
+                                                    <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Bor-R8-uii">
+                                                        <rect key="frame" x="0.0" y="0.0" width="53" height="25"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0I3-zQ-MRN">
-                                                                <rect key="frame" x="8" y="6" width="29" height="13"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXP-Qd-gbu">
+                                                                <rect key="frame" x="5" y="5" width="43" height="12"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstItem="0I3-zQ-MRN" firstAttribute="top" secondItem="DEg-2v-kAn" secondAttribute="top" constant="6" id="Ibi-c1-HuM"/>
-                                                            <constraint firstItem="0I3-zQ-MRN" firstAttribute="centerX" secondItem="DEg-2v-kAn" secondAttribute="centerX" id="WWg-ze-lXp"/>
-                                                            <constraint firstItem="0I3-zQ-MRN" firstAttribute="leading" secondItem="DEg-2v-kAn" secondAttribute="leadingMargin" id="Zes-GN-Ibj"/>
-                                                            <constraint firstItem="0I3-zQ-MRN" firstAttribute="centerY" secondItem="DEg-2v-kAn" secondAttribute="centerY" id="shd-ms-RnK"/>
+                                                            <constraint firstItem="ZXP-Qd-gbu" firstAttribute="top" secondItem="Bor-R8-uii" secondAttribute="top" constant="5" id="3aE-vf-b8S"/>
+                                                            <constraint firstItem="ZXP-Qd-gbu" firstAttribute="leading" secondItem="Bor-R8-uii" secondAttribute="leading" constant="5" id="VHC-BM-Gzz"/>
+                                                            <constraint firstItem="ZXP-Qd-gbu" firstAttribute="centerX" secondItem="Bor-R8-uii" secondAttribute="centerX" id="j0p-1d-IBq"/>
                                                         </constraints>
                                                     </collectionViewCellContentView>
-                                                    <color key="backgroundColor" red="0.18823529410000001" green="0.30980392159999998" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <size key="customSize" width="45" height="25"/>
-                                                    <connections>
-                                                        <outlet property="headerLabel" destination="0I3-zQ-MRN" id="rYX-9p-kWC"/>
-                                                    </connections>
+                                                    <size key="customSize" width="53" height="25"/>
                                                 </collectionViewCell>
                                             </cells>
                                             <connections>
-                                                <outlet property="dataSource" destination="iRY-bB-iOj" id="Yso-OY-lx2"/>
-                                                <outlet property="delegate" destination="iRY-bB-iOj" id="BMB-Qt-L2K"/>
+                                                <outlet property="dataSource" destination="kiy-cW-sSa" id="o66-FE-ZhD"/>
+                                                <outlet property="delegate" destination="kiy-cW-sSa" id="fRR-eV-SPt"/>
                                             </connections>
                                         </collectionView>
                                     </subviews>

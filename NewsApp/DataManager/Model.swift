@@ -12,7 +12,7 @@ class News: Object {
     @Persisted var Title: String?
     @Persisted var Description: String?
     @Persisted var Image: String?
-    @Persisted var newsCategory: Categories?
+    @Persisted var newsCategory: String = Categories.allNews.rawValue
 }
 
 enum Categories: String, CaseIterable, PersistableEnum {
