@@ -30,12 +30,12 @@ class HomeController: UIViewController {
         }
         backupNews = allNews
         
-//        collection.register(CategoriesHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CategoriesHeaderCell")
-//        
-//        collection.register(CategoriesHeaderReusableView.self, forSupplementaryViewOfKind:UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CategoriesHeaderReusableView")
+        //        collection.register(CategoriesHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CategoriesHeaderCell")
+        //
+        //        collection.register(CategoriesHeaderReusableView.self, forSupplementaryViewOfKind:UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CategoriesHeaderReusableView")
         collection.register(CategoriesHeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CategoriesHeaderReusableView")
-
-
+        
+        
     }
     
     @IBAction func searchTextfield(_ sender: UITextField) {
@@ -47,14 +47,14 @@ class HomeController: UIViewController {
                 }
                 return false
             }
-            } else {
-                searching = false
-                allNews.removeAll()
-                allNews = backupNews
-            }
-            collection.reloadData()
+        } else {
+            searching = false
+            allNews.removeAll()
+            allNews = backupNews
         }
+        collection.reloadData()
     }
+}
 
 
 extension HomeController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -81,47 +81,47 @@ extension HomeController: UICollectionViewDataSource, UICollectionViewDelegate, 
     // Header configuration
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        let headerr = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "\(CategoriesHeaderReusableView.self)", for: indexPath) as! CategoriesHeaderReusableView
-//        
-//        let headerr = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CategoriesHeaderReusableView", for: indexPath) as! CategoriesHeaderReusableView
+        //        let headerr = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "\(CategoriesHeaderReusableView.self)", for: indexPath) as! CategoriesHeaderReusableView
+        //
+        //        let headerr = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CategoriesHeaderReusableView", for: indexPath) as! CategoriesHeaderReusableView
         
         print("CategoriesHeaderReusableView Oluşturuluyor")
-        let headerr = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CategoriesHeaderReusableView", for: indexPath) as! CategoriesHeaderReusableView
-
-
-        headerr.didSelectCategoryCallback = { newsCategory in
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CategoriesHeaderReusableView", for: indexPath) as! CategoriesHeaderReusableView
+        header.configure()        
+        header.backgroundColor = .red
+        header.didSelectCategoryCallback = { newsCategory in
             let filteredNews = self.allNews.filter { $0.newsCategory == newsCategory }
             self.allNews = filteredNews
             self.collection.reloadData()
         }
         
-        return headerr
+        return header
     }
     
-
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        let headerr = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "\(CategoriesHeaderReusableView.self)", for: indexPath) as! CategoriesHeaderReusableView
-//        headerr.didSelectCategoryCallback = { category in
-//            let filteredNews = self.newsItem.filter {$0.category == category}
-//            self.newsItem = filteredNews
-//            self.collection.reloadData()
-//        }
-//        return headerr
-//    }
+    
+    //    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    //        let headerr = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "\(CategoriesHeaderReusableView.self)", for: indexPath) as! CategoriesHeaderReusableView
+    //        headerr.didSelectCategoryCallback = { category in
+    //            let filteredNews = self.newsItem.filter {$0.category == category}
+    //            self.newsItem = filteredNews
+    //            self.collection.reloadData()
+    //        }
+    //        return headerr
+    //    }
     
 }
-    
-    
-    extension HomeController {
-        func fetchItems() {
-            allNews.removeAll()
-            let data = realm.objects(News.self)
-            allNews.append(contentsOf: data)
-            collection.reloadData()
-            
-            
-        }
-        
 
+
+extension HomeController {
+    func fetchItems() {
+        allNews.removeAll()
+        let data = realm.objects(News.self)
+        allNews.append(contentsOf: data)
+        collection.reloadData()
+        
+        
     }
+    
+    
+}
 
